@@ -70,7 +70,8 @@ var force = d3.layout.force()
     .size([width, height]);
 
 var color = d3.scale.ordinal()
-    .range(colorbrewer.YlOrRd[9]);
+    //.range(colorbrewer.YlOrRd[9]);
+    .range(colorbrewer.RdYlBu[11]);
 
 var tip = d3.tip()
   .attr('class', 'd3-tip')
