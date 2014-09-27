@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <meta charset="utf-8">
 <style>
 .node {
@@ -14,6 +15,35 @@
 text {
   font: 10px sans-serif;
   text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+ 
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+ 
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
 }
 
 </style>
@@ -40,12 +70,23 @@ var force = d3.layout.force()
     .size([width, height]);
 
 var color = d3.scale.ordinal()
-    .range(colorbrewer.OrRd[9]);
+    .range(colorbrewer.YlOrRd[9]);
+
+var tip = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+    return "<strong>Name:</strong> <span style='color:red'>" + d.name + "</span> <br> <strong>Group:</strong> <span style='color:red'>" 
+            + d.group + "</span> <br> <strong>Coolness:</strong> <span style='color:red'>" + d.coolness + "</span>";
+  })
 
 //Add our canvas
 var svg = d3.select("body").append("svg")
     .attr("width", width)
     .attr("height", height);
+
+/* Invoke the tip in the context of your visualization */
+svg.call(tip)
 
 //Select the miserables data ;)
 d3.json("miserables.json", function(error, graph) {
@@ -68,10 +109,12 @@ d3.json("miserables.json", function(error, graph) {
       .attr("class", "node")
       //.attr("r", function(d) {return 0.1 * d.coolness} )
       .attr("r", function(d) {return Math.sqrt(d.coolness)} )
-      .style("fill", function(d) { return color(d.group); })      
+      .style("fill", function(d) { return color(d.group); }) 
       .on("mouseover", mouseover)
       .on("mouseout", mouseout)
       .on("dblclick", dblclick)
+      //.on('mouseover', tip.show)
+      //.on('mouseout', tip.hide)
       .text(function(d){ return d.name;})
       .call(force.drag);
 	  
@@ -98,7 +141,7 @@ d3.json("miserables.json", function(error, graph) {
         //.style("fill", function(d) { return color(d.group); })
         .classed("fixed", d.fixed = false);
         } else { 
-        console.log("not pinned")
+        //console.log("not pinned")
         d3.select(this)
         .attr("r", function(d) {return 2*Math.sqrt(d.coolness);} )
         .style("stroke", "#000000")
@@ -108,16 +151,22 @@ d3.json("miserables.json", function(error, graph) {
         .classed("fixed", d.fixed = true);
         }}
 
-function mouseover() {
+function mouseover(d) {
   d3.select(this).transition()
       .duration(750)
       .attr("r", function(d) {return 2*Math.sqrt(d.coolness);});
+
+  d3.select(this).call(tip.show(d));
 }
 
-function mouseout() {
+function mouseout(d) {
   d3.select(this).transition()
       .duration(750)
       .attr("r", function(d) {return Math.sqrt(d.coolness);});
+      console.log(this);
+
+  d3.select(this).call(tip.hide(d));
+
 }
 
 //Update stuff for animation:
@@ -139,3 +188,4 @@ function mouseout() {
 });
 
 </script>
+</body>
