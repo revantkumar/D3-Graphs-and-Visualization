@@ -1,0 +1,27 @@
+Question 1.3-c:
+---------------
+
+The visualization using Square Root Nodes is much better. In case of linear nodes, when we use a smaller linear constant, then some of the nodes are not clearly visible and when we use a linear constant (near 1) then the nodes' size are too large which makes the visualization less user-friendly. However, all the nodes can be clearly seen in case of Square Root Nodes. Thus, square root nodes is a much better choice. 
+
+
+Question 1.4:
+-------------
+
+The visualization rendered after filtering is much better. The visualizations looks more clearer and user-friendly. Users generally tend to see characters which have larger coolness as compared to others. Also, as tooltips have been included, we have not lost any information and users can still see the names of the filtered nodes by hovering over them. Thus, we have improved the visualization by making it less cluttered.	
+
+
+Question 1.7-b:
+---------------
+
+For text, I have done the following:
+1. Font Size: 10px
+2. Font: sans-serif
+3. I have also included text shadow which makes the labels clearly and user-friendly.
+
+Using this font setting plus text shadow, makes the labels less cluttered and more user-friendly. Plus, I have changed the charge value to -500 and the link distance to 50. By increasing the replusion value and the link distance, the nodes are little bit more far apart. This also makes the labels less cluttered and more clear.
+
+In extra changes, I also added that when a user mouseover a particular node, it size becomes twice that of its pervious size. And when the user removes the mouse pointer, then the node reverts back to its original size. Also, this particlar change remains active for 750 seconds. If a user is still pointing to it for more than 750 seconds, this means that the user is not there and the node can be reverted back to its original size. 
+
+Making the node bigger in size when a user points to it helps by making that node more prominent than as user is interested in it, plus the nodes which are smaller in size can be seen properly as their size increases.
+
+The colorbrewer.js is used to color the nodes. Its color blind safe also. The color range used is RdYlBu[11].

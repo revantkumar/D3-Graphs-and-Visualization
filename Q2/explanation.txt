@@ -1,0 +1,36 @@
+Question 2.2:
+-------------
+
+1. I have used Tableau to build the table. 
+2. In order to make it helpful for the user, I have also included bars in each column of the table corresponding to the value of the data that they contain. By this, the user can easily identify which is the maximum among them all. And also they can see a trend with respect to the other values. 
+3. Irrelevant information has veen removed such as Wagon, Pickup, and Minivan as all their values are 0. 
+4. As you can see in the table submitted, users can easily identify whether a vehicle is a SUV or a sports cars as a bar has been added in their respective column if the value is 1. 
+5. A data range has been included with respect to each column, helping the user to get an idea of the range of values. 
+6. A range of colors have been used in order to make the table look user-friendly and good to the user's eyes.
+
+Question 2.3:
+-------------
+
+For 2.3a, the colorbrewer.js has been used. The colors have been taken from the range RdYlBu. This has been chosen as they are colorblind safe. Plus, they are visually much better and enhance user-friendlies. 
+
+For 2.3b, the colors chosen are blue and orange. They are aesthetically looking good and convey the required information. I used the Tableau feature given on their show tools panel. 
+
+Question 2.4:
+-------------
+
+In this question, I have drawn 6 plots. 
+
+1. In the first plot, I have shown that the prices of the cars of each manufacturer and how they compare with that of the manufacturers. We can easily see that Mercedes-Benz is more costly than Nissan through the graph. 
+
+2. In the second plot, I have shown the variation of Engine Sizes of the cars of each manufacturer.
+
+3. In the third plot, I have shown the variation of Horse Power of the cars of each manufacturers.
+
+4. Fourth plot is a scatter plot between CityMPG and HwyMPG of the cars of each manufacturers. It clearly shows that relationship between the two, that they are linearly correlated. Plus, HwyMPG is greater than CityMPG.
+
+5. In the fifth plot, I have shown the variation of Price with respect to the engine sizes of the cars. In this plot, we can also click on the manufacturer's name in the legend if we want to display the line graph for that manufacturer or not.
+
+6. In the sixth plot, I have shown the variation of Price with respect to the horse power of the cars of each manufacturer. Again, in this plot, we can also click on the manufacturer's name in the legend if we want to display the line graph for that manufacturer or not.
+
+Thus, the user can see all the variations with respect to the given five parameters. This will help in making the correct choice.
+

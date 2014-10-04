@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: orangered ;
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+</style>
+<body>
+<script src="d3/d3.v3.min.js"></script>
+<script src="d3/d3-tip.js"></script>
+<script src="d3/colorbrewer.js"></script>
+<script>
+
+var margin = {top: 80, right: 30, bottom: 50, left: 50},
+    width = 625 - margin.left - margin.right,
+    height = 475 - margin.top - margin.bottom;
+
+var formatPercent = d3.format(".0%");
+
+var x = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+    //.tickFormat(formatPercent);
+
+var tip = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+    return "<strong>Vehicle Name:</strong> <span style='color:red'>" + d.Name + "</span> <br> <strong>Retail Price:</strong> <span style='color:red'>" 
+            + d.Price + "</span> <br> <strong>Engine Size:</strong> <span style='color:red'>" + d.Size + "</span><br> <strong>HP:</strong> <span style='color:red'>" + d.HP + "</span> <br> <strong>City MPG</strong> <span style='color:red'>" + d.CityMPG + "</span><br> <strong>Hwy MPG:</strong> <span style='color:red'>" + d.HwyMPG + "</span>";
+  })
+
+var svg1 = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg1.call(tip);
+
+d3.json("cars1.json", function(error, data) {
+
+  x.domain(data.map(function(d) { return d.Name; }));
+  y.domain([0, d3.max(data, function(d) { return d.Price; })]);
+
+  svg1.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+      .append("text")
+      .attr("class", "label")
+      .attr("x", width+20)
+      .attr("y", -6)
+      .style("text-anchor", "end")
+      .text("Car");
+
+  svg1.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+      .append("text")
+      .attr("class", "label")
+      //.attr("transform", "rotate(-90)")
+      .attr("x", 25)
+      .attr("y", -10)
+      //.attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Price (in USD)");
+
+  svg1.selectAll(".bar")
+      .data(data)
+      .enter().append("rect")
+      .attr("class", "bar")
+      .style("fill", "#fc8d59")
+      .attr("x", function(d) { return x(d.Name); })
+      .attr("width", x.rangeBand())
+      .attr("y", function(d) { return y(d.Price); })
+      .attr("height", function(d) { return height - y(d.Price); })
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
+
+});
+
+
+var svg2 = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg2.call(tip);
+
+d3.json("cars1.json", function(error, data) {
+  x.domain(data.map(function(d) { return d.Name; }));
+  y.domain([0, d3.max(data, function(d) { return d.Size; })]);
+
+  svg2.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+      .append("text")
+      .attr("class", "label")
+      .attr("x", width+20)
+      .attr("y", -6)
+      .style("text-anchor", "end")
+      .text("Car");
+
+  svg2.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+      .append("text")
+      .attr("class", "label")
+      //.attr("transform", "rotate(-90)")
+      .attr("x", 20)
+      .attr("y", -10)
+      //.attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Engine Size");
+
+  svg2.selectAll(".bar")
+      .data(data)
+      .enter().append("rect")
+      .attr("class", "bar")
+      .style("fill", "#d73027")
+      .attr("x", function(d) { return x(d.Name); })
+      .attr("width", x.rangeBand())
+      .attr("y", function(d) { return y(d.Size); })
+      .attr("height", function(d) { return height - y(d.Size); })
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
+
+});
+
+var svg3 = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg3.call(tip);
+
+d3.json("cars1.json", function(error, data) {
+  x.domain(data.map(function(d) { return d.Name; }));
+  y.domain([0, d3.max(data, function(d) { return d.HP; })]);
+
+  svg3.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+      .append("text")
+      .attr("class", "label")
+      .attr("x", width+20)
+      .attr("y", -6)
+      .style("text-anchor", "end")
+      .text("Car");
+
+  svg3.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+      .append("text")
+      .attr("class", "label")
+      //.attr("transform", "rotate(-90)")
+      .attr("x", 20)
+      .attr("y", -10)
+      //.attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Horse Power");
+
+  svg3.selectAll(".bar")
+      .data(data)
+      .enter().append("rect")
+      .attr("class", "bar")
+      .style("fill", "#91bfdb")
+      .attr("x", function(d) { return x(d.Name); })
+      .attr("width", x.rangeBand())
+      .attr("y", function(d) { return y(d.HP); })
+      .attr("height", function(d) { return height - y(d.HP); })
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
+
+});
+
+var x0 = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1);
+
+var x1 = d3.scale.ordinal();
+
+var y1 = d3.scale.linear()
+    .range([height, 0]);
+
+var color = d3.scale.ordinal()
+    .range(colorbrewer.RdYlBu[11]);
+    //.range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+var xAxis1 = d3.svg.axis()
+    .scale(x0)
+    .orient("bottom");
+    //.tickFormat(d3.format(".2s"));
+
+var yAxis1 = d3.svg.axis()
+    .scale(y1)
+    .orient("left");
+    //.tickFormat(d3.format(".2s"));
+
+var tip1 = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+    return "<strong>Vehicle Name:</strong> <span style='color:red'>" + d.name + "</span> <br> <strong>Miles per Gallon:</strong> <span style='color:red'>" + d.value + "</span>";
+  })
+
+var svg4 = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg4.call(tip1);
+
+d3.json("cars2.json", function(error, data) {
+  var MPGdata = d3.keys(data[0]).filter(function(key) { return key !== "MPG"; });
+
+  data.forEach(function(d) {
+    d.mpg = MPGdata.map(function(name) { return {name: name, value: +d[name]}; });
+    //console.log(d.mpg);
+  });
+
+  x0.domain(data.map(function(d) { return d.MPG; }));
+  x1.domain(MPGdata).rangeRoundBands([0, x0.rangeBand()]);
+  y1.domain([0, 15 + d3.max(data, function(d) { return d3.max(d.mpg, function(d) { return d.value; }); })]);
+
+  svg4.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")      
+      .call(xAxis1)
+      .append("text")
+      .attr("class", "label")
+      .attr("x", width+30)
+      .attr("y", -6)
+      .style("text-anchor", "end")
+      .text("Attributes");
+
+  svg4.append("g")
+      .attr("class", "y axis")
+      .call(yAxis1)
+      .append("text")
+      .attr("class", "label")
+      //.attr("transform", "rotate(-90)")
+      .attr("x", 32)
+      .attr("y", -10)
+      //.attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Miles Per Gallon");
+
+  var state = svg4.selectAll(".state")
+      .data(data)
+      .enter().append("g")
+      .attr("class", "g")
+      .attr("transform", function(d) { return "translate(" + x0(d.MPG) + ",0)"; });
+
+  state.selectAll("rect")
+      .data(function(d) { return d.mpg; })
+      .enter().append("rect")
+      .attr("width", x1.rangeBand())
+      .attr("x", function(d) { return x1(d.name); })
+      .attr("y", function(d) { return y1(d.value); })
+      .attr("height", function(d) { return height - y1(d.value); })
+      .style("fill", function(d) { return color(d.name); })
+      .on('mouseover', tip1.show)
+      .on('mouseout', tip1.hide);
+
+      //var total = margin.left + width + 10;
+
+  var legend = svg4.selectAll(".legend")
+      .data(MPGdata.slice().reverse())
+      .enter().append("g")
+      .attr("class", "legend")
+      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+ 
+
+  legend.append("rect")
+      .attr("x", width - 50)
+      .attr("width", 18)
+      .attr("height", 18)
+      .style("fill", color);
+
+  legend.append("text")
+      .attr("x", width - 55)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(function(d) { return d; });
+
+});
+
+function type(d) {
+  d.Price = +d.Price;
+  d.Size = +d.Size;
+  d.HP = +d.HP;
+  d.CityMPG = +d.CityMPG;
+  d.HwyMPG = +d.HwyMPG;
+  return d;
+}
+
+</script>

@@ -1,0 +1,387 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<workbook source-platform='mac' version='8.3' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <!-- build 8200.14.0819.2015                                -->
+  <preferences>
+  </preferences>
+  <datasources>
+    <datasource caption='Sheet1 (requiredcars)' inline='true' name='excel-direct.41910.157330787000' version='8.3'>
+      <connection class='excel-direct' cleaning='no' compat='no' filename='/Users/revantkumar/Documents/Revant/Gatech/Semester 1/Data and Visual Analytics/Homeworks/HW2/Q2/Part 3/requiredcars.xls'>
+        <relation name='Sheet1$' table='[Sheet1$]' type='table'>
+          <columns header='yes'>
+            <column datatype='string' name='Vehicle Name' ordinal='0' />
+            <column datatype='integer' name='Retail Price' ordinal='1' />
+            <column datatype='real' name='Engine Size (l)' ordinal='2' />
+            <column datatype='integer' name='HP' ordinal='3' />
+            <column datatype='integer' name='City MPG' ordinal='4' />
+            <column datatype='integer' name='Hwy MPG' ordinal='5' />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>Vehicle Name</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Vehicle Name]</local-name>
+            <parent-name>[Sheet1$]</parent-name>
+            <remote-alias>Vehicle Name</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Retail Price</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Retail Price]</local-name>
+            <parent-name>[Sheet1$]</parent-name>
+            <remote-alias>Retail Price</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Engine Size (l)</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Engine Size (l)]</local-name>
+            <parent-name>[Sheet1$]</parent-name>
+            <remote-alias>Engine Size (l)</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>HP</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[HP]</local-name>
+            <parent-name>[Sheet1$]</parent-name>
+            <remote-alias>HP</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>City MPG</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[City MPG]</local-name>
+            <parent-name>[Sheet1$]</parent-name>
+            <remote-alias>City MPG</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Hwy MPG</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Hwy MPG]</local-name>
+            <parent-name>[Sheet1$]</parent-name>
+            <remote-alias>Hwy MPG</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name></remote-name>
+            <remote-type>0</remote-type>
+            <parent-name>[Sheet1$]</parent-name>
+            <remote-alias></remote-alias>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='context'>2</attribute>
+              <attribute datatype='boolean' name='header'>true</attribute>
+            </attributes>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <column datatype='integer' name='[City MPG]' role='measure' type='quantitative'>
+      </column>
+      <column datatype='real' hidden='true' name='[Engine Size (l)]' role='measure' type='quantitative'>
+      </column>
+      <column datatype='integer' hidden='true' name='[HP]' role='measure' type='quantitative'>
+      </column>
+      <column datatype='integer' name='[Hwy MPG]' role='measure' type='quantitative'>
+      </column>
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column datatype='integer' hidden='true' name='[Retail Price]' role='measure' type='quantitative'>
+      </column>
+      <column-instance column='[City MPG]' derivation='Sum' name='[sum:City MPG:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Hwy MPG]' derivation='Sum' name='[sum:Hwy MPG:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Number of Records]' derivation='Sum' name='[sum:Number of Records:qk]' pivot='key' type='quantitative' />
+      <layout dim-ordering='alphabetic' dim-percentage='0.5' measure-ordering='alphabetic' measure-percentage='0.4' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[:Measure Names]' type='palette'>
+            <map to='#1f77b4'>
+              <bucket>&quot;[excel-direct.41910.157330787000].[sum:City MPG:qk]&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;[excel-direct.41910.157330787000].[sum:Number of Records:qk]&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;[excel-direct.41910.157330787000].[sum:Hwy MPG:qk]&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Sheet 1'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Sheet1 (requiredcars)' name='excel-direct.41910.157330787000' />
+          </datasources>
+          <datasource-dependencies datasource='excel-direct.41910.157330787000'>
+            <column datatype='integer' name='[City MPG]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='integer' name='[Hwy MPG]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='string' name='[Vehicle Name]' role='dimension' type='nominal'>
+            </column>
+            <column-instance column='[Vehicle Name]' derivation='None' name='[none:Vehicle Name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[City MPG]' derivation='Sum' name='[sum:City MPG:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Hwy MPG]' derivation='Sum' name='[sum:Hwy MPG:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[excel-direct.41910.157330787000].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[excel-direct.41910.157330787000].[sum:City MPG:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[excel-direct.41910.157330787000].[sum:Hwy MPG:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[excel-direct.41910.157330787000].[none:Vehicle Name:nk]'>
+            <groupfilter function='except' user:ui-domain='relevant' user:ui-enumeration='exclusive' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[none:Vehicle Name:nk]' />
+              <groupfilter function='member' level='[none:Vehicle Name:nk]' member='&quot;Mazda RX-8 4dr automatic&quot;' />
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[excel-direct.41910.157330787000].[:Measure Names]</column>
+            <column>[excel-direct.41910.157330787000].[none:Vehicle Name:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' field='[excel-direct.41910.157330787000].[none:Vehicle Name:nk]' value='101' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[excel-direct.41910.157330787000].[:Measure Names]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run fontcolor='#898989'>Vehicle Name:</run>
+                <run fontcolor='#787878'>Æ&#9;</run>
+                <run bold='true'>&lt;[excel-direct.41910.157330787000].[none:Vehicle Name:nk]&gt;</run>
+                <run fontcolor='#898989'>&#10;&lt;[excel-direct.41910.157330787000].[:Measure Names]&gt;:</run>
+                <run fontcolor='#787878'>Æ&#9;</run>
+                <run bold='true'>&lt;[excel-direct.41910.157330787000].[Multiple Values]&gt;</run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='size' value='1.7581214904785156' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[excel-direct.41910.157330787000].[Multiple Values]</rows>
+        <cols>([excel-direct.41910.157330787000].[:Measure Names] / [excel-direct.41910.157330787000].[none:Vehicle Name:nk])</cols>
+      </table>
+    </worksheet>
+  </worksheets>
+  <windows>
+    <window class='schema' source-height='-1' />
+    <window auto-hidden='0' class='worksheet' maximized='1' name='Sheet 1'>
+      <cards>
+        <edge name='left'>
+          <strip size='100'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card pane-specification-id='0' param='[excel-direct.41910.157330787000].[:Measure Names]' type='color' />
+            <card type='measures' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[excel-direct.41910.157330787000].[:Measure Names]</field>
+          <field>[excel-direct.41910.157330787000].[none:Vehicle Name:nk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='Sheet 1' width='192'>
+      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
+      KoDdbuf48eM3Deit2YG3BtDaUDUNg3xLSzwEPtGFsQxyVEg8JGQxLnRNCiB0TQogdE0KIHRN
+      CiB0TQogdE0KIHRNCiB0TQogdE0KIHRNCiB0TQogdE0KIHRNCiB0TQogdE0KIHRNCiB0TQog
+      dE0KIHRNCiB0bd1fik9Fg4RSKqZ8nImFNR57tBerUfojtrd1v4OH+84wObvMpf5xauwlJi6H
+      5cczxLa37gLs3HMIi6KhKWA0KWiaRjwelyvDiW1t3ZtAVmcZLY0KVFmZmFvj2OOV2M0GuTKc
+      2NbWXQCLo4wmRxlQS1PbJiYS4j6SvViha1IAoWtSAKFrUgCha1IAoWtSAKFrUgCha1IAoWtS
+      AKFrUgCha1IAoWtSAKFrUgCha1IAoWtSAKFrUgCha1IAoWtSAKFrUgCha1IAoWtSAKFrd1kA
+      jXd/8kO+/8LLRFP5zUkkxH207suiAGgaFA0W7IYkkXgaCmlKpRJ2u32z8gmxqe56E8hkAUWF
+      QqGEx+OhrKxsM3IJcV/c1RpAUeDIo0+RK5Rw2G2blUmI++auCgAKJrMFk3lzwghxv8lRIKFr
+      UgCha1IAoWtSAKFrUgCha1IAoWtSAKFrUgCha1IAoWtSAKFrUgCha1IAoWtSAKFrUgCha1IA
+      oWtSAKFrUgCha3ddAFUtUSgU0TYjjRD32V1eFULjzVdPsBrL8uhnf5Ymv3OzcglxX9z1GiCf
+      N3PsUAdrwcRm5BHivrrrAlhteU6eH6OiWi6HIra/u7wsisJnnvkiqqZhMMj+s9j+FE3TPtH+
+      rKZpxGIxSqUSpVIJi8VCOJWnpH7y3eNCPo/ZYvnEjwdwWU04LEYKhQJGoxGDwUAwkbuncW5E
+      LrfdjNVkIJfLYbVaKaka4Xu8vORG5PI6LZgMyrVc+ZJKNF3Y8lx+lxVF4VquTKFEIlvc8Fyf
+      uAAfyOfzFItFHA7HPYXbaKlUCovFgtn8YF3EKBaL4Xa7tzrGTfSaa0O3YxZmL3NpeJxMMkEi
+      /fFLXU0tEgpHr/2fyWTev73E9MQoY5OzqB/Tz0IuRy6fI5+/celgtVoxGo0AlAo5hgYvMbcc
+      IhwOcduVlKYSCkdueVdwaZ7+wRFyxdId82RTUYbGJogm07e8//rrqMZCywwMDDCzsHxzlGKO
+      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
+      uJkAAAAASUVORK5CYII=
+    </thumbnail>
+  </thumbnails>
+</workbook>

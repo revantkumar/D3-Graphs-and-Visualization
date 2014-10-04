@@ -1,0 +1,5 @@
+[{"Name":"Chrysler Crossfire","Price":34495,"Size":3.2,"HP":215,"CityMPG":17,"HwyMPG":25},
+{"Name":"Porsche 911","Price":192465,"Size":3.6,"HP":477,"CityMPG":17,"HwyMPG":24},
+{"Name":"Jaguar XKR","Price":81995,"Size":4.2,"HP":390,"CityMPG":16,"HwyMPG":23},
+{"Name":"Ford Mustang","Price":18345,"Size":3.8,"HP":193,"CityMPG":20,"HwyMPG":29},
+{"Name":"Chevrolet Corvette","Price":51535,"Size":5.7,"HP":350,"CityMPG":18,"HwyMPG":25}]
